@@ -1,0 +1,11 @@
+{
+  "name": "freeEngine-System",
+  "version": "0.1.0-alpha",
+  "entryScene": "welcome",
+  "render": {
+    "width": 1920,
+    "height": 1080,
+    "pixelArtMode": false,
+    "webgpu": true
+  }
+}

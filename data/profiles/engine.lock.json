@@ -1,0 +1,5 @@
+{
+  "debug": true,
+  "packing": true,
+  "description": "freeEngine IDE 初始态：双锁均开启 (debug=on, packing=on)"
+}

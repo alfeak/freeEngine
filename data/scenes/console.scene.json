@@ -1,0 +1,94 @@
+{
+  "id": "scene_console",
+  "name": "Engine Console (Game #0)",
+  "environment": {
+    "ambientLight": {
+      "color": [0.12, 0.15, 0.2],
+      "intensity": 1.2
+    },
+    "gravity": [0, 0, 0],
+    "clearColor": [0.05, 0.06, 0.1, 1.0]
+  },
+  "rootEntityIds": [
+    "ent_console_header",
+    "ent_console_lock_badge",
+    "ent_console_viewport_preview",
+    "ent_console_terminal"
+  ],
+  "entities": {
+    "ent_console_header": {
+      "id": "ent_console_header",
+      "name": "ConsoleHeaderBar",
+      "active": true,
+      "tags": ["UI", "Header"],
+      "layer": 20,
+      "parentId": null,
+      "childrenIds": [],
+      "components": {
+        "UIWidget": {
+          "type": "UIWidget",
+          "enabled": true,
+          "props": {
+            "title": "freeEngine Console v0.1.0-alpha [Game #0 Mode: IDE]",
+            "subtitle": "WebGPU 2.5D Realtime Core Active"
+          }
+        }
+      }
+    },
+    "ent_console_lock_badge": {
+      "id": "ent_console_lock_badge",
+      "name": "EngineLockBadge",
+      "active": true,
+      "tags": ["UI", "LockStatus"],
+      "layer": 20,
+      "parentId": null,
+      "childrenIds": [],
+      "components": {
+        "UIWidget": {
+          "type": "UIWidget",
+          "enabled": true,
+          "props": {
+            "debug": true,
+            "packing": true
+          }
+        }
+      }
+    },
+    "ent_console_viewport_preview": {
+      "id": "ent_console_viewport_preview",
+      "name": "Live2DViewport",
+      "active": true,
+      "tags": ["UI", "Viewport"],
+      "layer": 15,
+      "parentId": null,
+      "childrenIds": [],
+      "components": {
+        "UIWidget": {
+          "type": "UIWidget",
+          "enabled": true,
+          "props": {
+            "title": "2.5D WebGPU Live Scene Preview"
+          }
+        }
+      }
+    },
+    "ent_console_terminal": {
+      "id": "ent_console_terminal",
+      "name": "GoldenFingerTerminal",
+      "active": true,
+      "tags": ["UI", "LLMTerminal"],
+      "layer": 20,
+      "parentId": null,
+      "childrenIds": [],
+      "components": {
+        "UIWidget": {
+          "type": "UIWidget",
+          "enabled": true,
+          "props": {
+            "title": "LLM Golden Finger Agent Terminal (MCP Ready)"
+          }
+        }
+      }
+    }
+  }
+}

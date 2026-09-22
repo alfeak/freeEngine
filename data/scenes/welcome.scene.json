@@ -1,0 +1,134 @@
+{
+  "id": "scene_welcome",
+  "name": "Welcome Screen",
+  "environment": {
+    "ambientLight": {
+      "color": [0.15, 0.18, 0.25],
+      "intensity": 1.0
+    },
+    "gravity": [0, 0, 0],
+    "clearColor": [0.03, 0.04, 0.08, 1.0]
+  },
+  "rootEntityIds": [
+    "ent_welcome_bg",
+    "ent_welcome_title",
+    "ent_welcome_subtitle",
+    "ent_welcome_prompt"
+  ],
+  "entities": {
+    "ent_welcome_bg": {
+      "id": "ent_welcome_bg",
+      "name": "WelcomeShaderBackground",
+      "active": true,
+      "tags": ["Background", "WebGPUEffect"],
+      "layer": 0,
+      "parentId": null,
+      "childrenIds": [],
+      "components": {
+        "Transform2D": {
+          "type": "Transform2D",
+          "enabled": true,
+          "props": {
+            "position": { "x": 0, "y": 0 },
+            "z": 0,
+            "rotation": 0,
+            "scale": { "x": 1, "y": 1 },
+            "sortOrder": 0
+          }
+        }
+      }
+    },
+    "ent_welcome_title": {
+      "id": "ent_welcome_title",
+      "name": "EngineTitle",
+      "active": true,
+      "tags": ["UI", "HeroTitle"],
+      "layer": 10,
+      "parentId": null,
+      "childrenIds": [],
+      "components": {
+        "Transform2D": {
+          "type": "Transform2D",
+          "enabled": true,
+          "props": {
+            "position": { "x": 0, "y": -80 },
+            "z": 10,
+            "rotation": 0,
+            "scale": { "x": 1, "y": 1 },
+            "sortOrder": 10
+          }
+        },
+        "UIWidget": {
+          "type": "UIWidget",
+          "enabled": true,
+          "props": {
+            "text": "FREE ENGINE",
+            "subtitle": "WebGPU 2.5D & LLM-Native Self-Hosting Engine",
+            "fontSize": 48
+          }
+        }
+      }
+    },
+    "ent_welcome_subtitle": {
+      "id": "ent_welcome_subtitle",
+      "name": "EngineSubtitle",
+      "active": true,
+      "tags": ["UI", "Subtitle"],
+      "layer": 10,
+      "parentId": null,
+      "childrenIds": [],
+      "components": {
+        "Transform2D": {
+          "type": "Transform2D",
+          "enabled": true,
+          "props": {
+            "position": { "x": 0, "y": 0 },
+            "z": 10,
+            "rotation": 0,
+            "scale": { "x": 1, "y": 1 },
+            "sortOrder": 11
+          }
+        },
+        "UIWidget": {
+          "type": "UIWidget",
+          "enabled": true,
+          "props": {
+            "text": "Frontend IS the Game • Next-Gen 2.5D Visuals • Autonomous LLM Loop",
+            "fontSize": 16
+          }
+        }
+      }
+    },
+    "ent_welcome_prompt": {
+      "id": "ent_welcome_prompt",
+      "name": "StartPromptButton",
+      "active": true,
+      "tags": ["UI", "Interactive", "StartTrigger"],
+      "layer": 10,
+      "parentId": null,
+      "childrenIds": [],
+      "components": {
+        "Transform2D": {
+          "type": "Transform2D",
+          "enabled": true,
+          "props": {
+            "position": { "x": 0, "y": 120 },
+            "z": 15,
+            "rotation": 0,
+            "scale": { "x": 1, "y": 1 },
+            "sortOrder": 12
+          }
+        },
+        "UIWidget": {
+          "type": "UIWidget",
+          "enabled": true,
+          "props": {
+            "text": "▶ 点击任意区域进入引擎控制台 (Click Anywhere to Enter Console)",
+            "fontSize": 18,
+            "pulse": true
+          }
+        }
+      }
+    }
+  }
+}

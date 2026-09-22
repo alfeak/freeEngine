@@ -1,0 +1,18 @@
+# Node
+node_modules/
+dist/
+dist-electron/
+.npm
+
+# Engine Caches & Dumps
+data/cache/*
+!data/cache/.gitkeep
+data/diagnostics/*
+!data/diagnostics/.gitkeep
+data/saves/editor_snapshots/*
+!data/saves/editor_snapshots/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+*.log
