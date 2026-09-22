@@ -47,25 +47,17 @@ function freeEnginePackPlugin(): Plugin {
                 "utf-8"
               );
 
-              // 4. 生成外层宿主启动程序 freeengine.acess (调起 Electron)
-              const acessHostPath = path.join(distDir, "freeengine.acess");
-              const acessContent = `@echo off
-title ${projectName} - freeEngine Standalone Game
-echo [freeEngine] Launching ${projectName} via Electron Native Runtime...
-set "FREE_ENGINE_MODE=standalone"
-set "NODE_ENV=production"
-if exist "%~dp0..\\..\\node_modules\\.bin\\electron.cmd" (
-  "%~dp0..\\..\\node_modules\\.bin\\electron.cmd" "%~dp0..\\..\\src\\electron\\main.cjs" %*
-) else (
-  electron "%~dp0..\\..\\src\\electron\\main.cjs" %*
-)
-`;
-              fs.writeFileSync(acessHostPath, acessContent, "utf-8");
+              // 4. 生成外层可执行启动入口 freeengine.exe 与启动脚本
+              const rootExe = path.resolve(__dirname, "freeengine.exe");
+              const destExe = path.join(distDir, "freeengine.exe");
+              if (fs.existsSync(rootExe)) {
+                fs.copyFileSync(rootExe, destExe);
+              }
 
               const batPath = path.join(distDir, "freeengine.bat");
               fs.writeFileSync(
                 batPath,
-                `@echo off\r\n"%~dp0freeengine.acess" %*\r\n`,
+                `@echo off\r\nstart "" "%~dp0freeengine.exe" %*\r\n`,
                 "utf-8"
               );
 
@@ -78,7 +70,7 @@ if exist "%~dp0..\\..\\node_modules\\.bin\\electron.cmd" (
                   outputPath: distDir,
                   relativeDir: `dist/${projectName}`,
                   files: [
-                    "freeengine.acess",
+                    "freeengine.exe",
                     "freeengine.bat",
                     "data/entity/",
                     "data/scenes/",

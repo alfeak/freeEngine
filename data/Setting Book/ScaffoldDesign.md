@@ -10,27 +10,28 @@
 
 ```
 freeEngine/
-├── freeengine.acess (或 freeengine.exe)      # [外层宿主] Electron + Rust 原生启动入口
+├── freeengine.exe                          # [外层宿主] 原生可执行启动入口 (调起 Electron + WebGPU，双击直接运行)
 └── data/                                   # [核心数据层] 承载游戏与 IDE 全生命周期的全部资产与逻辑
+    ├── Setting Book/                       # 引擎架构与设定文档集 (ArcDesign, DataStruct, etc.)
     ├── entity/                             # 渲染实体与预制体定义 (Entity & Prefabs)
-    ├── scenes/                             # [建议补充] 场景拓扑与关卡组织 (Scene Hierarchy & Maps)
+    ├── scenes/                             # 场景拓扑与关卡组织 (Scene Hierarchy & Maps)
     ├── shaders/                            # 静态渲染逻辑 (WGSL Render & Compute Shaders)
     ├── logits/                             # 业务大脑 (Core Router 路由调度、ECS 系统与后端逻辑)
     ├── global_assets/                      # 全局多媒体静态资产 (纹理图集、法线图、音频、字体)
     ├── llm_golden_finger/                  # 大模型接入中枢 (MCP 契约、Prompt 模版、自愈自省入口)
     ├── profiles/                           # 运行配置 (EngineLock 状态、窗口参数、项目设置)
     ├── saves/                              # 运行期状态快照 (场景快照、存档、Undo/Redo 历史栈)
-    ├── diagnostics/                        # [建议补充] 运行时诊断与报错 Dump (供大模型闭环读取自愈)
-    └── cache/                              # [建议补充] 编译与显存预热缓存 (WebGPU PSO 缓存、Vite 缓存)
+    ├── diagnostics/                        # 运行时诊断与报错 Dump (供大模型闭环读取自愈)
+    └── cache/                              # 编译与显存预热缓存 (WebGPU PSO 缓存、Vite 缓存)
 ```
 
 ---
 
 ## 2. 现有各模块核心职责细化
 
-### 2.1 外层宿主 (`freeengine.acess` / `freeengine.exe`)
-- 基于 Electron (Chromium + Node.js) 封装的跨平台极简启动器。
-- 负责加载 Rust 动态底层扩展库（napi-rs），初始化硬件级 WebGPU 适配器，挂载本地文件系统权限，并将主视口指向 `data/` 内的启动入口。
+### 2.1 外层宿主 (`freeengine.exe`)
+- 引擎与生成游戏的唯一外层可执行启动入口（Windows 下为 `.exe`，跨平台下为对应的可执行程序）。
+- 双击即可直接进入，负责调起 Electron 原生桌面宿主（启用 WebGPU 硬件加速与 Vulkan 调度），加载本地数据核心 `data/`。
 
 ### 2.2 核心数据目录 `data/`
 
@@ -116,7 +117,7 @@ freeEngine/
 
 ```mermaid
 flowchart LR
-    Host["freeengine.acess<br/>(宿主进程)"] --> Logits["data/logits/<br/>(Core Router)"]
+    Host["freeengine.exe<br/>(可执行启动入口)"] --> Logits["data/logits/<br/>(Core Router)"]
     
     subgraph DataWorld ["data/ 数据空间"]
         Scenes["scenes/<br/>(场景拓扑)"] --> Logits

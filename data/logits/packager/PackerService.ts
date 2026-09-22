@@ -37,8 +37,8 @@ export class PackerService {
     notify(4, "[4/6] 静态编译 WebGPU 着色器 (WGSL) 并验证显存对齐规范...");
     await new Promise((r) => setTimeout(r, 200));
 
-    // 阶段 5: 组装宿主可执行程序 freeengine.acess
-    notify(5, "[5/6] 生成外层宿主启动器 [freeengine.acess] 与运行环境清单...");
+    // 阶段 5: 组装宿主可执行程序 freeengine.exe
+    notify(5, "[5/6] 生成外层宿主启动器 [freeengine.exe] 与运行环境清单...");
     await new Promise((r) => setTimeout(r, 200));
 
     // 阶段 6: 写入本地 dist 目录
@@ -64,7 +64,7 @@ export class PackerService {
         outputPath: `${projectPath || "D:/freeEngineProjects"}/${projectName}`,
         relativeDir: `dist/${projectName}`,
         files: [
-          "freeengine.acess",
+          "freeengine.exe",
           "freeengine.bat",
           "data/entity/",
           "data/scenes/",

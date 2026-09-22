@@ -1,3 +1,2 @@
 @echo off
-title freeEngine Launcher
-"%~dp0freeengine.acess" %*
+start "" "%~dp0freeengine.exe" %*
