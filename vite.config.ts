@@ -47,23 +47,25 @@ function freeEnginePackPlugin(): Plugin {
                 "utf-8"
               );
 
-              // 4. 生成外层宿主启动程序 freeengine.acess (以及 Windows 启动脚本 freeengine.bat)
+              // 4. 生成外层宿主启动程序 freeengine.acess (调起 Electron)
               const acessHostPath = path.join(distDir, "freeengine.acess");
-              const acessContent = `[freeEngine Executable Launcher Header]
-TargetEngineVersion: 0.1.0-alpha
-ProjectName: ${projectName}
-Architecture: Chromium-WebGPU-Rust
-DataRoot: ./data/
-EngineLock: debug=false,packing=false
-EntryScene: ./data/scenes/welcome.scene.json
-Checksum: ${Buffer.from(projectName + Date.now()).toString("hex")}
+              const acessContent = `@echo off
+title ${projectName} - freeEngine Standalone Game
+echo [freeEngine] Launching ${projectName} via Electron Native Runtime...
+set "FREE_ENGINE_MODE=standalone"
+set "NODE_ENV=production"
+if exist "%~dp0..\\..\\node_modules\\.bin\\electron.cmd" (
+  "%~dp0..\\..\\node_modules\\.bin\\electron.cmd" "%~dp0..\\..\\src\\electron\\main.cjs" %*
+) else (
+  electron "%~dp0..\\..\\src\\electron\\main.cjs" %*
+)
 `;
               fs.writeFileSync(acessHostPath, acessContent, "utf-8");
 
               const batPath = path.join(distDir, "freeengine.bat");
               fs.writeFileSync(
                 batPath,
-                `@echo off\r\necho Starting ${projectName} via freeEngine Host...\r\nstart "" "freeengine.acess"\r\n`,
+                `@echo off\r\n"%~dp0freeengine.acess" %*\r\n`,
                 "utf-8"
               );
 

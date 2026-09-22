@@ -3,8 +3,11 @@
   "version": "0.1.0-alpha",
   "description": "Next-generation 2.5D WebGPU & LLM-Native Game Engine and Self-Hosting IDE",
   "type": "module",
+  "main": "src/electron/main.cjs",
   "scripts": {
+    "start": "electron .",
     "dev": "vite",
+    "electron": "electron src/electron/main.cjs",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
@@ -13,13 +16,15 @@
     "webgpu",
     "llm-native",
     "2.5d",
-    "self-hosting"
+    "self-hosting",
+    "electron"
   ],
   "author": "alfeak",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^22.13.0",
     "@webgpu/types": "^0.1.54",
+    "electron": "^44.4.3",
     "typescript": "^5.7.3",
     "vite": "^6.1.0"
   }
